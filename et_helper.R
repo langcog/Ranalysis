@@ -88,8 +88,8 @@ preprocess.data <- function(d,
   ## add a column of times for each video segment
   ## note this code makes me somewhat ashamed; it's slow and it abuses the R namespace
   ## because it's basically a for loop. but I don't know how to fix it. -mcf
-  stim.change <- c(diff(as.numeric(factor(d$stimulus))) != 0,0)
-  dt <- c(diff(d$t),0)
+  stim.change <- c(0,diff(as.numeric(factor(d$stimulus))) != 0)
+  dt <- c(0,diff(d$t))
   t <- 0
   d$t.stim <- mapply(function (x,y) { 
     if(x==TRUE) { # if stimulus changes

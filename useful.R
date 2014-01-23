@@ -18,7 +18,9 @@ sem <- function (x) {
 
 ## NA functions
 na.mean <- function(x) {mean(x,na.rm=T)}
+na.median <- function(x) {median(x,na.rm=T)}
 na.sum <- function(x) {sum(x,na.rm=T)}
+na.sd <- function(x) {sd(x,na.rm=T)}
 
 ## convert to number
 to.n <- function(x) {
