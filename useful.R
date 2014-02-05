@@ -110,3 +110,15 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     }
   }
 }
+
+# anonymize subject ids by giving them a value 1:num_subjects
+anonymize.sids <- function(df, subject_column_label) {
+  subj_col = which(names(df) == subject_column_label) # get workerid column index
+  temp <- data.frame(workerid = unique(df[,subj_col])) # make new df of unique workerids
+  temp$subid <- 1:length(unique(df[,subj_col])) # make list of subids
+  index <- match(df[,subj_col], temp$workerid) 
+  df$subids <- temp$subid[index]
+  df[,subj_col] <- NULL 
+  df$subids  = as.factor(df$subids)
+  return(df)
+}
